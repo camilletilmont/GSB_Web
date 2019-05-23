@@ -56,13 +56,53 @@ include('test_connecter.php');
     <tr>
       <th scope="col">Nom</th>
       <th scope="col">Prenom</th>
-      <th scope="col">Type</th>
-      <th scope="col">Lieu</th>
-      <th scope="col">Specialités</th>
+      <th scope="col">Adresse</th>
       <th scope="col">Departement</th>
+      <th scope="col">Ville</th>
+      <th scope="col">Specialités</th>
     </tr>
   </thead>
   <tbody>
+    <?php
+    include('connecBDD.php');
+
+    function affichage(){
+    try{
+    $bdd = new PDO('mysql:host='.$hostname.';dbname='.$database, $user, $passwd);
+    }catch(Exception $ex){
+        echo "Erreur ".$ex->getMessage();
+
+    }
+
+    $sql = "SELECT PRA_NOM_PRATICIEN as nom,PRA_PRENOM_PRATICIEN as prenom, PRA_ADRESSE_PRATICIEN as adresse,
+    PRA_CP_PRATICIEN as codePostal,PRA_VILLE_PRATICIEN as ville,TYP_LIBELLE_TYPE_PRATICIEN as type  FROM PRATICIEN P, TYPE_PRATICIEN TP WHERE P.TYP_CODE_TYPE_PRATICIEN = TP.TYP_CODE_TYPE_PRATICIEN;";
+    foreach ($bdd->query($sql) as $row){
+      echo "<tr>";
+      echo "<th>";
+      echo $row['nom'];
+      echo "</th>";
+      echo "<th>";
+      echo $row['prenom'];
+      echo "</th>";
+      echo "<th>";
+      echo $row['adresse'];
+      echo "</th>";
+      echo "<th>";
+      echo $row['codePostal'];
+      echo "</th>";
+      echo "<th>";
+      echo $row['ville'];
+      echo "</th>";
+      echo "<th>";
+      echo $row['type'];
+      echo "</th>";
+      echo "</tr>";
+
+
+    }
+  }
+
+     ?>
   </tbody>
 </table>
 
