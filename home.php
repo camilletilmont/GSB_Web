@@ -61,8 +61,8 @@ include('listAffichage.php');
         <div class="col-lg-12">
           <div class="title text-center">
             <h2>Liste de Praticiens</h2>
-            </div>
-            <div class="d-flex col-lg-2"><?php echo "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
+          </div>
+          <div class="d-flex col-lg-2"><?php echo "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
 
         </div>
       </div>
@@ -74,7 +74,7 @@ include('listAffichage.php');
     <div class="container">
       <div class="row d-flex pt-50">
         <div class="d-flex justify-content-between col-lg-12">
-          <a class="btn btn-outline-info col-lg-2" href="ajoutPraticien.php" role="button">Ajouter un Praticien</a>
+          <a class="btn btn-outline-info col-lg-2" href="addPage.php" role="button">Ajouter un Praticien</a>
           <a class="btn btn-outline-danger col-lg-2" href="logout.php" role="button">Deconnexion</a>
         </div>
       </div>
@@ -101,8 +101,13 @@ include('listAffichage.php');
                 <th scope="col">Ville<div class="mt-10">
                   <input type="text" name="ville" placeholder="Ville" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ville'"  class="single-input">
                 </div></th>
-                <th scope="col">Specialités<div class="mt-10">
-                  <input type="text" name="specialites" placeholder="Spécialités" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Spécialités'"  class="single-input">
+                <th style="width: 16.66%" scope="col">Specialités<div class="mt-10">
+                  <select class="form-control" name="specialites">
+                    <option value=""></option>
+                    <?php
+
+                    selectSpe($unknow); ?>
+                  </select>
                 </div></th>
                 <th ><button class="btn btn-info" >Rechercher</button> </th>
               </tr>

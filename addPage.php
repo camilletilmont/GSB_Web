@@ -18,7 +18,7 @@ include('listAffichage.php');
   <!-- meta character set -->
   <meta charset="UTF-8">
   <!-- Site Title -->
-  <title>Modification</title>
+  <title>Ajout</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
   <!--
@@ -54,7 +54,7 @@ include('listAffichage.php');
           <div class="title text-center">
             <h2>Liste de Praticiens</h2>
           </div>
-          <div class="d-flex col-lg-2"><?php echo "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
+          <div class="d-flex col-lg-2"><?php  "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
 
         </div>
       </div>
@@ -89,11 +89,48 @@ include('listAffichage.php');
 
           </form>
           <tbody>
-            <?php
+            <form method="post" action="ajout.php">
+              <tr>
+                <th>
+                  <div class="mt-10">
+                    <input style="border-color : green;" type="text" placeholder="Asimov Korov" onfocus="this.placeholder = ''" name="nomAjout" id="nom" pattern="^[A-Za-z\s]{3,25}$" class="form-control" maxlength="25" required >
+                  </div>
+                </th>
+                <th>
+                  <div class="mt-10">
+                    <input style="border-color : green;" type="text" placeholder="Isaac Aris" onfocus="this.placeholder = ''" name="prenomAjout" pattern="^[A-Za-z\s]{3,25}$" id="prenom" maxlength="25" class="form-control" required>
+                  </div>
+                </th>
+                <th>
+                  <div class="mt-10">
+                    <input style="border-color : green;" type="text" placeholder="22, rue machin" onfocus="this.placeholder = ''" name="adresseAjout" pattern="^[0-9]{0,4},\s[A-Za-z\s]{3,98}$" id="adresse" class="form-control" maxlength="100" required>
+                  </div>
+                </th>
+                <th>
+                  <div class="mt-10">
+                    <input  style="border-color : green;" type="text"  placeholder="35860" onfocus="this.placeholder = ''" name="codeAjout" pattern="^[0-9]{5,5}$" id="code" class="form-control" maxlength="5" required>
+                  </div>
+                </th>
+                <th>
+                  <div class="mt-10">
+                    <input style="border-color : green;" type="text" placeholder="Saint Marcin" onfocus="this.placeholder = ''" name="villeAjout" pattern="^[A-Za-z\s]{3,45}$" id="ville" class="form-control" maxlength="45" required>
+                  </div>
+                </th>
+                <th style="width: 16.66%">
+                  <div class="mt-10">
+                    <select style="border-color : green;" class="form-control" name="typeAjout" required>
+                      <?php selectSpe($unkown); ?>
+                    </select>
+                  </div>
+                </th>
+                <th>
+                  <div class="mt-10">
+                    <button id="buttonVal" class="btn btn-outline-success col-lg-12">Valider</button>
+                  </div>
+                </th>
+              </tr>
+            </form>
 
-            affichageModif($id);
-
-            ?>
           </tbody>
         </table>
       </div>
