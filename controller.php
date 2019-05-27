@@ -11,23 +11,24 @@ $bdd = new PDO('mysql:host='.$hostname.';dbname='.$database, $user, $passwd);
 
 }
 
-$req = $bdd->prepare('SELECT VIS_MATRICULE_VISITEUR FROM VISITEUR WHERE VIS_NOM_VISITEUR = :nom');
-$req->execute(array('nom' => $nom));
+$req = $bdd->prepare('SELECT VIS_NOM_VISITEUR FROM VISITEUR WHERE VIS_MATRICULE_VISITEUR = :mat');
+$req->bindParam(':mat',$matricule);
+$req->execute();
 $resultat = $req->fetch();
 
 
 if(!$resultat){
-  echo '<body onLoad="alert(\'Nom Inconnu.\')">';
+  echo '<body onLoad="alert(\'Matricule Inconnu.\')">';
   echo '<meta http-equiv="refresh" content="0;URL=connexion.php">';
 
-}else if($matricule == $resultat['VIS_MATRICULE_VISITEUR']){
+}else if($nom == $resultat['VIS_NOM_VISITEUR']){
   session_start();
   $_SESSION['nom'] = $nom;
   $_SESSION['matricule']= $matricule;
   header('location:home.php');
 
 }else{
-  echo '<body onLoad="alert(\'Matricule Incorrect.\')">';
+  echo '<body onLoad="alert(\'Nom Incorrect.\')">';
   echo '<meta http-equiv="refresh" content="0;URL=connexion.php">';
 }
 

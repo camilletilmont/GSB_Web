@@ -18,7 +18,7 @@ include('listAffichage.php');
   <!-- meta character set -->
   <meta charset="UTF-8">
   <!-- Site Title -->
-  <title>Menu</title>
+  <title>Modification</title>
 
   <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
   <!--
@@ -38,18 +38,10 @@ include('listAffichage.php');
     }
   };
 
-  function conf(id){
 
-    if (window.confirm("Voulez vous vraiment supprimer ?")) {
-      window.location.replace('delete.php?id='+id);
-    }
-  }
 
-  function mod(id){
 
-    window.location.replace('modifPage.php?id='+id);
 
-  }
 
 </script>
 </head>
@@ -74,8 +66,7 @@ include('listAffichage.php');
     <div class="container">
       <div class="row d-flex pt-50">
         <div class="d-flex justify-content-between col-lg-12">
-          <a class="btn btn-outline-info col-lg-2" href="ajoutPraticien.php" role="button">Ajouter un Praticien</a>
-          <a class="btn btn-outline-danger col-lg-2" href="logout.php" role="button">Deconnexion</a>
+          <a class="btn btn-outline-info col-lg-2" href="home.php" role="button">Annuler</a>
         </div>
       </div>
     </div>
@@ -86,25 +77,13 @@ include('listAffichage.php');
           <form method="post" action="home.php" >
             <thead class="bg-dark text-white">
               <tr>
-                <th scope="col">Nom<div class="mt-10">
-                  <input type="text" name="nom" placeholder="Nom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nom'"  class="single-input">
-                </div></th>
-                <th scope="col">Prenom<div class="mt-10">
-                  <input type="text" name="prenom" placeholder="Prenom" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Prenom'"  class="single-input">
-                </div></th>
-                <th scope="col">Adresse<div class="mt-10">
-                  <input type="text" name="adresse" placeholder="Adresse" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adresse'"  class="single-input">
-                </div></th>
-                <th scope="col">Departement<div class="mt-10">
-                  <input type="text" name="departement" placeholder="Département" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Département'" class="single-input">
-                </div></th>
-                <th scope="col">Ville<div class="mt-10">
-                  <input type="text" name="ville" placeholder="Ville" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Ville'"  class="single-input">
-                </div></th>
-                <th scope="col">Specialités<div class="mt-10">
-                  <input type="text" name="specialites" placeholder="Spécialités" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Spécialités'"  class="single-input">
-                </div></th>
-                <th ><button class="btn btn-info" >Rechercher</button> </th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">Departement</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Specialités</th>
+                <th ></th>
               </tr>
             </thead>
 
@@ -112,7 +91,7 @@ include('listAffichage.php');
           <tbody>
             <?php
 
-            affichage($nom,$prenom,$adresse,$departement,$ville,$specialites);
+            affichageModif($id);
 
             ?>
           </tbody>
