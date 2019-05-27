@@ -74,8 +74,10 @@ include('listAffichage.php');
     <div class="container">
       <div class="row d-flex pt-50">
         <div class="d-flex justify-content-between col-lg-12">
-          <a class="btn btn-outline-info col-lg-2" href="addPage.php" role="button">Ajouter un Praticien</a>
-          <a class="btn btn-outline-danger col-lg-2" href="logout.php" role="button">Deconnexion</a>
+          <?php if($_SESSION['nom'] == 'Admin'){
+          echo '<a class="btn btn-outline-info col-lg-2" href="addPage.php" role="button">Ajouter un Praticien</a>';
+        }?>
+          <a class="btn btn-outline-danger col-lg-2 ml-auto" href="logout.php" role="button">Deconnexion</a>
         </div>
       </div>
     </div>
