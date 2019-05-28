@@ -1,7 +1,7 @@
 <?php
 //page d'accueil après la connexion
 
-//appel du test de l'existence d'une sessions
+//appel du test de l'existence d'une session
 include('test_connecter.php');
 
 //appel le fichier php afin d'afficher les valeurs du tableaux

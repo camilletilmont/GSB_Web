@@ -1,5 +1,10 @@
 <?php
+//page d'ajout d'un praticien
+
+//appel du test de l'existence d'une session
 include('test_connecter.php');
+
+//appel le fichier php afin d'afficher les valeurs du tableaux
 include('listAffichage.php');
 ?>
 <!DOCTYPE html>
@@ -32,15 +37,13 @@ include('listAffichage.php');
   <link rel="stylesheet" href="css/main.css">
   <script type="text/javascript">
 
+
+  //permet sous safari de recharger la page si on fait retour après la déconnexion
   window.onpageshow = function(event) {
     if (event.persisted) {
       window.location.reload() ;
     }
   };
-
-
-
-
 
 
 </script>
@@ -55,7 +58,6 @@ include('listAffichage.php');
             <h2>Liste de Praticiens</h2>
           </div>
           <div class="d-flex col-lg-2"><?php  "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
-
         </div>
       </div>
     </div>
@@ -73,6 +75,11 @@ include('listAffichage.php');
 
     <div class="container">
       <div class="row d-flex pt-50">
+
+        <!-- Creation tableau formulaire pour récupérer les informations pour la création d'un praticien-->
+
+
+        <!-- Header tableau-->
         <table class="table table-striped border border-dark">
           <form method="post" action="home.php" >
             <thead class="bg-dark text-white">
@@ -87,6 +94,8 @@ include('listAffichage.php');
               </tr>
             </thead>
 
+
+            <!-- formulaire tableau avec des insert avec des regles pour les infos à récupérer-->
           </form>
           <tbody>
             <form method="post" action="ajout.php">
@@ -119,12 +128,17 @@ include('listAffichage.php');
                 <th style="width: 16.66%">
                   <div class="mt-10">
                     <select style="border-color : green;" class="form-control" name="typeAjout" required>
-                      <?php selectSpe($unkown); ?>
+                      <?php
+                      //remplissage du select des spécialités par les spécialités existantes dans la bdd
+
+                      selectSpe($unkown); ?>
                     </select>
                   </div>
                 </th>
                 <th>
                   <div class="mt-10">
+
+                    <!-- Boutton validation du formulaire qui envoi les informations vers le fichier ajout.php-->
                     <button id="buttonVal" class="btn btn-outline-success col-lg-12">Valider</button>
                   </div>
                 </th>
