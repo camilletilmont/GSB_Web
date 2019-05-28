@@ -1,5 +1,10 @@
 <?php
+//page d'accueil après la connexion
+
+//appel du test de l'existence d'une sessions
 include('test_connecter.php');
+
+//appel le fichier php afin d'afficher les valeurs du tableaux
 include('listAffichage.php');
 ?>
 <!DOCTYPE html>
@@ -32,12 +37,17 @@ include('listAffichage.php');
   <link rel="stylesheet" href="css/main.css">
   <script type="text/javascript">
 
+
+  //permet à la page de se recharger automatiquement si elle persiste dans le cache
+  //permet sous safari de recharger si on fait retour après la déconnexion
   window.onpageshow = function(event) {
     if (event.persisted) {
       window.location.reload() ;
     }
   };
 
+
+  //popup de confirmation avant la suppression avec l'id du praticien visé en paramètre
   function conf(id){
 
     if (window.confirm("Voulez vous vraiment supprimer ?")) {
@@ -45,6 +55,8 @@ include('listAffichage.php');
     }
   }
 
+
+  //appel de la page de modification avec l'id du praticien visé en paramètre
   function mod(id){
 
     window.location.replace('modifPage.php?id='+id);
@@ -74,6 +86,8 @@ include('listAffichage.php');
     <div class="container">
       <div class="row d-flex pt-50">
         <div class="d-flex justify-content-between col-lg-12">
+
+          <!-- Affichage du boutton d'ajout praticien si la session est celle de Admin-->
           <?php if($_SESSION['nom'] == 'Admin'){
           echo '<a class="btn btn-outline-info col-lg-2" href="addPage.php" role="button">Ajouter un Praticien</a>';
         }?>
@@ -82,8 +96,13 @@ include('listAffichage.php');
       </div>
     </div>
 
+
+
     <div class="container">
       <div class="row d-flex pt-50">
+
+        <!-- Affichage de l'ossature du tableau avec le nom des colonnes et les champs de recherche pour l'envoi en formulaire-->
+
         <table class="table table-striped border border-dark">
           <form method="post" action="home.php" >
             <thead class="bg-dark text-white">
@@ -107,7 +126,7 @@ include('listAffichage.php');
                   <select class="form-control" name="specialites">
                     <option value=""></option>
                     <?php
-
+                    //appel de la function d'affichage des spécialités pour le select de recherche des spés
                     selectSpe($unknow); ?>
                   </select>
                 </div></th>
@@ -118,7 +137,8 @@ include('listAffichage.php');
           </form>
           <tbody>
             <?php
-
+            //affichage de la liste des praticiens avec les paramètres vide à la connexion
+            //puis avec les paramètres souhaités pour chaque recherche
             affichage($nom,$prenom,$adresse,$departement,$ville,$specialites);
 
             ?>
