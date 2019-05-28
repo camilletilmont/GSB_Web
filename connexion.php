@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="zxx" class="no-js">
 <head>
@@ -29,6 +27,8 @@
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/main.css">
 
+
+<!-- Page de connexion qui soumet le formulaire de co à la page controller.php pour vérification -->
 
   </head>
 
