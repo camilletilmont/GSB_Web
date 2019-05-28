@@ -1,5 +1,10 @@
 <?php
+//page de modification
+
+//appel du test de l'existence d'une session
 include('test_connecter.php');
+
+//appel le fichier php afin d'afficher les valeurs du tableaux
 include('listAffichage.php');
 ?>
 <!DOCTYPE html>
@@ -32,16 +37,14 @@ include('listAffichage.php');
   <link rel="stylesheet" href="css/main.css">
   <script type="text/javascript">
 
+
+  //permet à la page de se recharger automatiquement si elle persiste dans le cache
+  //permet sous safari de recharger si on fait retour après la déconnexion
   window.onpageshow = function(event) {
     if (event.persisted) {
       window.location.reload() ;
     }
   };
-
-
-
-
-
 
 </script>
 </head>
@@ -66,6 +69,8 @@ include('listAffichage.php');
     <div class="container">
       <div class="row d-flex pt-50">
         <div class="d-flex justify-content-between col-lg-12">
+
+          <!-- Boutton d'annulation pour retourner à l'accueil-->
           <a class="btn btn-outline-info col-lg-2" href="home.php" role="button">Annuler</a>
         </div>
       </div>
@@ -73,6 +78,11 @@ include('listAffichage.php');
 
     <div class="container">
       <div class="row d-flex pt-50">
+
+        <!-- Creation tableau formulaire pour récupérer les informations pour la modification d'un praticien-->
+
+
+        <!-- Header tableau-->
         <table class="table table-striped border border-dark">
           <form method="post" action="home.php" >
             <thead class="bg-dark text-white">
@@ -90,7 +100,7 @@ include('listAffichage.php');
           </form>
           <tbody>
             <?php
-
+            //affichage du praticien selectionné dans la page d'accueil par son id
             affichageModif($id);
 
             ?>

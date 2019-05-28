@@ -1,4 +1,5 @@
 <?php
+
 //page d'ajout d'un praticien
 
 //appel du test de l'existence d'une session

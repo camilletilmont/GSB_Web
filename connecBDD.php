@@ -7,5 +7,4 @@ $user="root";
 $passwd="root";
 $database="manipBdd";
 
-
  ?>

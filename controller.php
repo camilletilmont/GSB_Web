@@ -5,6 +5,8 @@
 //recupération des données de connexions pour la BDD
 include('./connecBDD.php');
 
+
+//récupération du nom et matricule envoyé par le formulaire de connexion
 $nom = $_POST['nom'];
 $matricule = $_POST['matricule'];
 

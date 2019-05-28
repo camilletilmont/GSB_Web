@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/main.css">
 
 
-<!-- Page de connexion qui soumet le formulaire de co à la page controller.php pour vérification -->
+<!-- Page de connexion qui soumet le formulaire de connexion à la page controller.php pour vérification -->
 
   </head>
 

@@ -1,6 +1,6 @@
 <?php
 
-//functions php permettant l'affichage des listes après des requetes sql
+//script php réunissant les fonctions permettant l'affichage des listes après des requetes sql
 
 
 //recupératiion des données POST et GET

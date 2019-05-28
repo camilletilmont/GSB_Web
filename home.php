@@ -74,7 +74,10 @@ include('listAffichage.php');
           <div class="title text-center">
             <h2>Liste de Praticiens</h2>
           </div>
-          <div class="d-flex col-lg-2"><?php echo "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
+
+          <!-- Affiche le nom du visiteur de la session -->
+          <div class="d-flex col-lg-2">
+            <?php echo "<br>Session : ".$_SESSION['nom']."<br><br>"; ?></div>
 
         </div>
       </div>
