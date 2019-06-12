@@ -43,7 +43,7 @@
         <br>Matricule :
         <br>
         <br>
-        <input name="matricule" />
+        <input type="password" name="matricule" />
         <br>
         <br>
         <br>
