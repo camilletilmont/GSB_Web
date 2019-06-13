@@ -47,6 +47,9 @@ try{
     echo '<meta http-equiv="refresh" content="0;URL=connexion.php">';
   }
 
+  //fermeture de la requete sql
+  $req->closeCursor();
+  
   //affichage d'erreurs si la requete envoyée est mauvaise
 }catch(Exception $ex){
   echo "Erreur :".$ex->getMessage();
