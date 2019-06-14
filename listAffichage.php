@@ -250,7 +250,7 @@ function affichage($n,$p,$a,$d,$v,$s,$t){
 
       }
 
-      //function permettant d'afficher un select regroupant toutes las valeurs existantes
+      //function permettant d'afficher un select regroupant toutes les valeurs existantes
       //de tarif de la BDD
       function selectTarif(&$default){
 

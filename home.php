@@ -137,7 +137,7 @@ include('listAffichage.php');
                   <select class="form-control" name="tarif">
                     <option value=""></option>
                     <?php
-                    //appel de la function d'affichage des spécialités pour le select de recherche des tarifs
+                    //appel de la function d'affichage des tarifs pour le select de recherche des tarifs
                     selectTarif($unknow); ?>
                   </select>
                 </div></th>

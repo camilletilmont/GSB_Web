@@ -45,13 +45,14 @@ if($_SESSION['nom'] == 'Admin'){
     foreach($sqlType->fetchAll() as $row){
       $typeApresModif = $row['codeT'];
     }
-
+    
+    //création et envoie de la requete de selection du tarif par son libellé que l'on a dans le formulaire
     try{
       $sqlTarif = $bdd->prepare("SELECT TAR_CODE_TARIF as codeTarif FROM TARIF WHERE TAR_LIBELLE_TARIF = :tarif");
       $sqlTarif->bindParam(':tarif',$tarifModif);
       $sqlTarif->execute();
 
-      //récupération de l'id de type praticien
+      //récupération de l'id du tarif
       foreach($sqlTarif->fetchAll() as $row){
         $tarifApresModif = $row['codeTarif'];
       }

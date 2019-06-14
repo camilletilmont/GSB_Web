@@ -39,6 +39,8 @@ if($_SESSION['nom'] == 'Admin'){
     foreach($sqlTypeAdd->fetchAll() as $row){
       $typeApresAjout = $row['codeT'];
     }
+
+    //création et envoie de la requete pour avoir l'id du tarif par rapport à son libellé
     try{
       $sqlTarifAdd = $bdd->prepare("SELECT TAR_CODE_TARIF as codeTarif FROM TARIF WHERE TAR_LIBELLE_TARIF = :tarif");
       $sqlTarifAdd->bindParam(':tarif',$tarifAjout);
@@ -74,7 +76,7 @@ if($_SESSION['nom'] == 'Admin'){
 
         }
 
-        //fermeture de la reuqte de selection d'id du tarif
+        //fermeture de la requete de selection d'id du tarif
         $sqlTarifAdd->closeCursor();
       }catch(Exception $e){
 

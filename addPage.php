@@ -141,7 +141,7 @@ include('listAffichage.php');
                   <div class="mt-10">
                     <select style="border-color : green;" class="form-control" name="tarifAjout" required>
                       <?php
-                      //remplissage du select des tarifs par les tarifs existantes dans la bdd
+                      //remplissage du select des tarifs par les tarifs existants dans la bdd
 
                       selectTarif($unkown); ?>
                     </select>
