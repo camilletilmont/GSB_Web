@@ -133,6 +133,14 @@ include('listAffichage.php');
                     selectSpe($unknow); ?>
                   </select>
                 </div></th>
+                <th style="width: 16.66%" scope="col">Tarif<div class="mt-10">
+                  <select class="form-control" name="tarif">
+                    <option value=""></option>
+                    <?php
+                    //appel de la function d'affichage des spécialités pour le select de recherche des tarifs
+                    selectTarif($unknow); ?>
+                  </select>
+                </div></th>
                 <th ><button class="btn btn-info" >Rechercher</button> </th>
               </tr>
             </thead>
@@ -142,7 +150,7 @@ include('listAffichage.php');
             <?php
             //affichage de la liste des praticiens avec les paramètres vide à la connexion
             //puis avec les paramètres souhaités pour chaque recherche
-            affichage($nom,$prenom,$adresse,$departement,$ville,$specialites);
+            affichage($nom,$prenom,$adresse,$departement,$ville,$specialites,$tarif);
 
             ?>
           </tbody>

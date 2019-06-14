@@ -91,6 +91,7 @@ include('listAffichage.php');
                 <th scope="col">Departement</th>
                 <th scope="col">Ville</th>
                 <th scope="col">Specialités</th>
+                <th scope="col">Tarifs</th>
                 <th ></th>
               </tr>
             </thead>
@@ -133,6 +134,16 @@ include('listAffichage.php');
                       //remplissage du select des spécialités par les spécialités existantes dans la bdd
 
                       selectSpe($unkown); ?>
+                    </select>
+                  </div>
+                </th>
+                <th style="width: 16.66%">
+                  <div class="mt-10">
+                    <select style="border-color : green;" class="form-control" name="tarifAjout" required>
+                      <?php
+                      //remplissage du select des tarifs par les tarifs existantes dans la bdd
+
+                      selectTarif($unkown); ?>
                     </select>
                   </div>
                 </th>

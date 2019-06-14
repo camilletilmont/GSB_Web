@@ -93,6 +93,7 @@ include('listAffichage.php');
                 <th scope="col">Departement</th>
                 <th scope="col">Ville</th>
                 <th scope="col">Specialités</th>
+                <th scope="col">Tarifs</th>
                 <th ></th>
               </tr>
             </thead>

@@ -15,6 +15,7 @@ $adresseAjout = htmlspecialchars(trim($_POST['adresseAjout']));
 $codeAjout = htmlspecialchars(trim($_POST['codeAjout']));
 $villeAjout = htmlspecialchars(trim($_POST['villeAjout']));
 $specialitesAjout = htmlspecialchars(trim($_POST['typeAjout']));
+$tarifAjout = htmlspecialchars(trim($_POST['tarifAjout']));
 
 //enclenche le script si la session est celle de l'Admin
 if($_SESSION['nom'] == 'Admin'){
@@ -38,38 +39,59 @@ if($_SESSION['nom'] == 'Admin'){
     foreach($sqlTypeAdd->fetchAll() as $row){
       $typeApresAjout = $row['codeT'];
     }
-
-    //création et envoie de la requete d'insertion d'un nouveau praticien
     try{
-      $sqlAdd = $bdd->prepare("INSERT INTO PRATICIEN (PRA_NOM_PRATICIEN, PRA_PRENOM_PRATICIEN,
-        PRA_ADRESSE_PRATICIEN, PRA_CP_PRATICIEN,PRA_VILLE_PRATICIEN, TYP_CODE_TYPE_PRATICIEN)
-        VALUES (:nom, :prenom, :adresse, :codeP, :ville, :type);");
-        $sqlAdd->bindParam(':nom',$nomAjout);
-        $sqlAdd->bindParam(':prenom',$prenomAjout);
-        $sqlAdd->bindParam(':adresse',$adresseAjout);
-        $sqlAdd->bindParam(':codeP',$codeAjout);
-        $sqlAdd->bindParam(':ville',$villeAjout);
-        $sqlAdd->bindParam(':type',$typeApresAjout);
-        $sqlAdd->execute();
+      $sqlTarifAdd = $bdd->prepare("SELECT TAR_CODE_TARIF as codeTarif FROM TARIF WHERE TAR_LIBELLE_TARIF = :tarif");
+      $sqlTarifAdd->bindParam(':tarif',$tarifAjout);
+      $sqlTarifAdd->execute();
+
+      //récupération de l'id de type praticien
+      foreach($sqlTarifAdd->fetchAll() as $row){
+        $tarifApresAjout = $row['codeTarif'];
+      }
 
 
-        //fermeture de la reuqte d'ajout d'un praticien
-        $sqlAdd->closeCursor();
+      //création et envoie de la requete d'insertion d'un nouveau praticien
+      try{
+        $sqlAdd = $bdd->prepare("INSERT INTO PRATICIEN (PRA_NOM_PRATICIEN, PRA_PRENOM_PRATICIEN,
+          PRA_ADRESSE_PRATICIEN, PRA_CP_PRATICIEN,PRA_VILLE_PRATICIEN, TYP_CODE_TYPE_PRATICIEN, TAR_CODE_TARIF)
+          VALUES (:nom, :prenom, :adresse, :codeP, :ville, :type, :tarif);");
+          $sqlAdd->bindParam(':nom',$nomAjout);
+          $sqlAdd->bindParam(':prenom',$prenomAjout);
+          $sqlAdd->bindParam(':adresse',$adresseAjout);
+          $sqlAdd->bindParam(':codeP',$codeAjout);
+          $sqlAdd->bindParam(':ville',$villeAjout);
+          $sqlAdd->bindParam(':type',$typeApresAjout);
+          $sqlAdd->bindParam(':tarif',$tarifApresAjout);
+          $sqlAdd->execute();
+
+
+          //fermeture de la reuqte d'ajout d'un praticien
+          $sqlAdd->closeCursor();
+        }catch(Exception $e){
+
+          echo "Erreur ".$e->getMessage();
+          echo "<br>erreur add";
+
+        }
+
+        //fermeture de la reuqte de selection d'id du tarif
+        $sqlTarifAdd->closeCursor();
       }catch(Exception $e){
 
         echo "Erreur ".$e->getMessage();
         echo "<br>erreur add";
 
       }
-      //fermeture de la requete de selection d'id du type de praticien
-      $sqlTypeAdd->closeCursor();
-    }catch(Exception $ex){
 
-      echo "Erreur ".$ex->getMessage();
+    //fermeture de la requete de selection d'id du type de praticien
+    $sqlTypeAdd->closeCursor();
+  }catch(Exception $ex){
 
-    }
+    echo "Erreur ".$ex->getMessage();
+
   }
-  //redirection quoi qu'il arrive vers l'accueil
-  header('location:home.php');
+}
+//redirection quoi qu'il arrive vers l'accueil
+header('location:home.php');
 
-  ?>
+?>

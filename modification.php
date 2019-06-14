@@ -17,6 +17,7 @@ $adresseModif = htmlspecialchars(trim($_POST['adresseModif']));
 $codeModif = htmlspecialchars(trim($_POST['codeModif']));
 $villeModif = htmlspecialchars(trim($_POST['villeModif']));
 $specialitesModif = htmlspecialchars(trim($_POST['typeModif']));
+$tarifModif = htmlspecialchars(trim($_POST['tarifModif']));
 $idModif = htmlspecialchars(trim($_GET['id']));
 
 
@@ -45,13 +46,22 @@ if($_SESSION['nom'] == 'Admin'){
       $typeApresModif = $row['codeT'];
     }
 
+    try{
+      $sqlTarif = $bdd->prepare("SELECT TAR_CODE_TARIF as codeTarif FROM TARIF WHERE TAR_LIBELLE_TARIF = :tarif");
+      $sqlTarif->bindParam(':tarif',$tarifModif);
+      $sqlTarif->execute();
+
+      //récupération de l'id de type praticien
+      foreach($sqlTarif->fetchAll() as $row){
+        $tarifApresModif = $row['codeTarif'];
+      }
 
 
     try{
 
       //création et envoie de la requete de modification avec la récupération des données envoyées par le formulaire
       $sqlMod = $bdd->prepare("UPDATE PRATICIEN SET PRA_NOM_PRATICIEN = :nom, PRA_PRENOM_PRATICIEN = :prenom, PRA_ADRESSE_PRATICIEN = :adresse,
-        PRA_CP_PRATICIEN = :codeP, PRA_VILLE_PRATICIEN = :ville, TYP_CODE_TYPE_PRATICIEN = :type WHERE PRA_NUM_PRATICIEN = :id");
+        PRA_CP_PRATICIEN = :codeP, PRA_VILLE_PRATICIEN = :ville, TYP_CODE_TYPE_PRATICIEN = :type, TAR_CODE_TARIF = :tarif WHERE PRA_NUM_PRATICIEN = :id");
 
         $sqlMod->bindParam(':nom',$nomModif);
         $sqlMod->bindParam(':prenom',$prenomModif);
@@ -59,7 +69,9 @@ if($_SESSION['nom'] == 'Admin'){
         $sqlMod->bindParam(':codeP',$codeModif);
         $sqlMod->bindParam(':ville',$villeModif);
         $sqlMod->bindParam(':type',$typeApresModif);
+        $sqlMod->bindParam(':tarif',$tarifApresModif);
         $sqlMod->bindParam(':id',$idModif);
+
 
 
         $sqlMod->execute();
@@ -72,6 +84,16 @@ if($_SESSION['nom'] == 'Admin'){
         echo "Erreur ".$e->getMessage();
 
       }
+
+      //fermeture de la requete de selection d'id du tarif
+      $sqlTarif->closeCursor();
+    }catch(Exception $e){
+
+      echo "Erreur ".$e->getMessage();
+      echo "<br>erreur add";
+
+    }
+
 
       //fermeture de la requete de récupération d'id du type de praticien
       $sqlType->closeCursor();
